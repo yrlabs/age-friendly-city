@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D City Walk</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            cursor: url('cursor.cur'), auto;
+            height: 100%;
+        }
+         .loading-overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('loading-screen.gif') center center no-repeat; /* Use your GIF as the background */
+            background-size: cover; /* Ensure it covers the entire screen */
+            z-index: 9999; /* Ensure it's above everything else */
+
+        
+        }
+            
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="loading-overlay"></div>
+    <div class="buttonContainer">
+        <button id="buttonschool">School</button>
+        <button id="buttonhospital">Care facilities</button>
+        <button id="buttonpark">Park</button>
+        <button id="buttonhousing">Housing</button>
+        <button id="buttontowncentre">Town centre</button>
+        <button id="buttoncarpark">Alternative play</button>
+            
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/controls/OrbitControls.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

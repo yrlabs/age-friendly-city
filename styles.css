@@ -1,0 +1,35 @@
+/* Default cursor */
+body {
+    cursor: url('defaultcursor.cur'), auto;
+  }
+  
+  /* Hover cursor */
+  a:hover, button:hover {
+    cursor: url('defaultcursor.cur'), pointer;
+  }
+  
+  /* Active (clicked) cursor */
+  a:active, button:active {
+    cursor: url('pressedcursor.cur'), pointer;
+  }
+
+  #buttonContainer {
+    display: flex;
+    gap: 5px;
+    margin-left: 30px;
+  }
+  /* CSS to style the button */
+button{
+  margin: 0;
+  max-width: 100px;
+  padding: 4px 10px;
+  font-size:14px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 102, 0.6);
+  color: black;
+  transition: background-color 0.3s;
+
+}
+button:hover {
+  background-color: rgba(102, 204, 255, 0.8);
+}
