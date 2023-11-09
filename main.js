@@ -30,7 +30,7 @@ let textMesh; // Define a variable for the text mesh
 
 // Load the JSON font data
 text.load('kindergarten_Medium.json', (font) => {
-    const textGeometry = new THREE.TextGeometry('Age friendly city', {
+    const textGeometry = new THREE.TextGeometry('Move cursor to explore', {
         font: font,
         size: 0.1, // Adjust size as needed
         height: 0.01, // Adjust height as needed
