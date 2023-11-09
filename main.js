@@ -38,7 +38,7 @@ text.load('kindergarten_Medium.json', (font) => {
     });
 
     // Create and add a Mesh to your scene
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xDC4A70 });
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
     textMesh = new THREE.Mesh(textGeometry, textMaterial);
     textMesh.position.set(-0.3, 0.7, -0.5); // Adjust the position as needed
     textMesh.scale.set(0.5, 0.5, 0.5); // Adjust the scale as needed
