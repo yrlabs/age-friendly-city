@@ -5,7 +5,7 @@ body {
   
   /* Hover cursor */
   a:hover, button:hover {
-    cursor: url('defaultcursor.cur'), pointer;
+    cursor: url('pressedcursor.cur'), pointer;
   }
   
   /* Active (clicked) cursor */
@@ -21,10 +21,10 @@ body {
   /* CSS to style the button */
 button{
   margin: 0;
-  max-width: 100px;
-  padding: 4px 10px;
+  max-width: 200px;
+  padding: 3px 10px;
   font-size:14px;
-  border-radius: 15px;
+  border-radius: 12px;
   background-color: rgba(255, 255, 102, 0.6);
   color: black;
   transition: background-color 0.3s;
