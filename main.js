@@ -109,6 +109,47 @@ busLoader.load('busgithub.glb', (gltf) => {
         // Add the mixer to an array to update it in your animation loop
         mixers.push(mixer);
     }
+});
+
+// Load the sphere model
+const sphereLoader = new THREE.GLTFLoader();
+sphereLoader.load('spheregithub.glb', (gltf) => {
+    const sphereModel = gltf.scene;
+    sphereModel.scale.set(0.1, 0.1, 0.1);
+    scene.add(sphereModel);
+
+    const mixers = []; // Create an array to hold mixers for each sphere
+
+    const sphereAnimationNames = ['SphereAction', 'Sphere.001Action', 'Sphere.002Action', 'Sphere.003Action', 'Sphere.004Action'];
+
+    // Create mixers for each sphere and play their animations
+    for (let i = 0; i < sphereAnimationNames.length; i++) {
+        const sphere = sphereModel.getObjectByName(`Sphere${i}`);
+        const sphereAnimationName = sphereAnimationNames[i];
+
+        if (sphere) {
+            // Create an animation mixer for the sphere
+            const mixer = new THREE.AnimationMixer(sphere);
+
+            // Get the animation clip by name
+            const sphereAnimationClip = THREE.AnimationClip.findByName(gltf.animations, sphereAnimationName);
+
+            if (sphereAnimationClip) {
+                // Create an animation action
+                const sphereAnimationAction = mixer.clipAction(sphereAnimationClip);
+
+                // Play the animation
+                sphereAnimationAction.play();
+
+                // Add the mixer to the array
+                mixers.push(mixer);
+            }
+        }
+    }
+    // Add the mixers to the main mixers array
+    mixers.forEach((mixer) => {
+        mixers.push(mixer);
+    });
     setTimeout(removeLoadingScreen, 2100);
 
 });
