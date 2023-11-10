@@ -110,12 +110,18 @@ busLoader.load('busgithub.glb', (gltf) => {
         mixers.push(mixer);
     }
 });
-
+const emissiveMaterial = new THREE.MeshBasicMaterial({ color: 0xFCB3FC, emissive: 0xF3FEA1, emissiveIntensity: 1 }); // Adjust color and intensity
 // Load the sphere model
 const sphereLoader = new THREE.GLTFLoader();
 sphereLoader.load('spheregithub.glb', (gltf) => {
     const sphereModel = gltf.scene;
     sphereModel.scale.set(0.1, 0.1, 0.1);
+    // Apply the emissive material to your spheres
+    sphereModel.traverse((node) => {
+        if (node instanceof THREE.Mesh) {
+            node.material = emissiveMaterial;
+        }
+    });
     scene.add(sphereModel);
 
     const mixers = []; // Create an array to hold mixers for each sphere
