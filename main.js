@@ -94,20 +94,20 @@ busLoader.load('busgithub.glb', (gltf) => {
     scene.add(busModel);
 
     // Create an animation mixer for the bus model
-    const mixer = new THREE.AnimationMixer(busModel);
+    const busMixer = new THREE.AnimationMixer(busModel);
 
     // Get the animation clip by name ("Cube.001" in this case)
     const busAnimationClip = THREE.AnimationClip.findByName(gltf.animations, 'Cube.001Action');
 
     if (busAnimationClip) {
         // Create an animation action
-        const busAnimationAction = mixer.clipAction(busAnimationClip);
+        const busAnimationAction = busMixer.clipAction(busAnimationClip);
 
         // Play the animation
         busAnimationAction.play();
 
         // Add the mixer to an array to update it in your animation loop
-        mixers.push(mixer);
+        mixers.push(busMixer);
     }
 });
 const emissiveMaterial = new THREE.MeshBasicMaterial({ color: 0xFCB3FC, emissive: 0xF3FEA1, emissiveIntensity: 1 }); // Adjust color and intensity
@@ -124,41 +124,47 @@ sphereLoader.load('spheregithub.glb', (gltf) => {
     });
     scene.add(sphereModel);
 
-    const mixers = []; // Create an array to hold mixers for each sphere
+    const sphereAnimationMixers = []; // Create an array to hold mixers for each sphere
 
-    const sphereAnimationNames = ['SphereAction', 'Sphere.001Action', 'Sphere.002Action', 'Sphere.003Action', 'Sphere.004Action'];
+    const sphereAnimationNames = ['SphereAction0', 'SphereAction1', 'SphereAction2', 'SphereAction3', 'SphereAction4'];
 
     // Create mixers for each sphere and play their animations
     for (let i = 0; i < sphereAnimationNames.length; i++) {
         const sphere = sphereModel.getObjectByName(`Sphere${i}`);
         const sphereAnimationName = sphereAnimationNames[i];
 
-        if (sphere) {
+       if (sphere) {
             // Create an animation mixer for the sphere
-            const mixer = new THREE.AnimationMixer(sphere);
+            const sphereMixer = new THREE.AnimationMixer(sphere);
 
             // Get the animation clip by name
             const sphereAnimationClip = THREE.AnimationClip.findByName(gltf.animations, sphereAnimationName);
 
             if (sphereAnimationClip) {
                 // Create an animation action
-                const sphereAnimationAction = mixer.clipAction(sphereAnimationClip);
+                const sphereAnimationAction = sphereMixer.clipAction(sphereAnimationClip);
 
                 // Play the animation
                 sphereAnimationAction.play();
 
                 // Add the mixer to the array
-                mixers.push(mixer);
+                sphereAnimationMixers.push(sphereMixer);
             }
         }
     }
     // Add the mixers to the main mixers array
-    mixers.forEach((mixer) => {
-        mixers.push(mixer);
+    mixers.push(...sphereAnimationMixers);
+        // Add the mixers for your animations
+      mixers.push(busMixer); // Mixer for the bus animation
+       mixers.push(sphereAnimationMixers[0]); // Mixer for SphereAction
+          mixers.push(sphereAnimationMixers[1]); //
+       mixers.push(sphereAnimationMixers[2]);
+       mixers.push(sphereAnimationMixers[3]);
+        mixers.push(sphereAnimationMixers[4]);
     });
     setTimeout(removeLoadingScreen, 2100);
 
-});
+
 const directionalLight = new THREE.DirectionalLight(0xfaddd4, 0.6);
 directionalLight.position.set(1, 1, 1); // Set the light's position
 directionalLight.intensity = 0.9; // Adjust the intensity as needed
