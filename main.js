@@ -38,7 +38,7 @@ text.load('kindergarten_Medium.json', (font) => {
     });
 
     // Create and add a Mesh to your scene
-    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xbcb8a9 });
     textMesh = new THREE.Mesh(textGeometry, textMaterial);
     textMesh.position.set(-0.3, 0.7, -0.5); // Adjust the position as needed
     textMesh.scale.set(0.5, 0.5, 0.5); // Adjust the scale as needed
@@ -74,7 +74,7 @@ document.addEventListener('click', () => {
 });
 // Load your 3D city model
 const loader = new THREE.GLTFLoader();
-loader.load('citymodel1.glb', (gltf) => {
+loader.load('citygithub.glb', (gltf) => {
     const model = gltf.scene;
     model.scale.set(0.1, 0.1, 0.1);
     scene.add(model);
@@ -88,7 +88,7 @@ loader.load('citymodel1.glb', (gltf) => {
 
 // Load the bus model
 const busLoader = new THREE.GLTFLoader();
-busLoader.load('bus.glb', (gltf) => {
+busLoader.load('busgithub.glb', (gltf) => {
     const busModel = gltf.scene;
     busModel.scale.set(0.1, 0.1, 0.1);
     scene.add(busModel);
